@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class JustAnotherJavaApplication {
     
-    private static final String VERSION_FILE = "";
+    private static final String VERSION_FILE = "version.txt";
 
     /**
      * @param args the command line arguments
@@ -28,9 +28,7 @@ public class JustAnotherJavaApplication {
             try {
                 byte[] encoded = Files.readAllBytes(Paths.get(VERSION_FILE));
                 version_contents = new String (encoded, Charset.forName("UTF-8"));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            } catch (IOException ex) { }
             System.out.println("v"+version_contents);
             return;
         }
