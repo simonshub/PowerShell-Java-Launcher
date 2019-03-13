@@ -1,5 +1,9 @@
 package src;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +15,7 @@ import java.util.List;
  */
 public class JustAnotherJavaApplication {
     
-    private static final int VERSION = 1;
+    private static final String VERSION_FILE = "";
 
     /**
      * @param args the command line arguments
@@ -20,7 +24,14 @@ public class JustAnotherJavaApplication {
         List<String> arg_list = Arrays.asList(args);
         
         if (arg_list.contains("version") || arg_list.contains("v")) {
-            System.out.println("v"+VERSION);
+            String version_contents = "?";
+            try {
+                byte[] encoded = Files.readAllBytes(Paths.get(VERSION_FILE));
+                version_contents = new String (encoded, Charset.forName("UTF-8"));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("v"+version_contents);
             return;
         }
         
